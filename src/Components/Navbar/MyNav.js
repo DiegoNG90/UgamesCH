@@ -1,12 +1,14 @@
 import { Navbar, Container, Nav, Form, FormControl, Button } from "react-bootstrap";
-
-
+import CartWidget from '../CartWidget';
+import LogoWidget from '../LogoWidget';
 
 const MyNav = () => {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">Ugames</Navbar.Brand>
+        <Navbar.Brand href="#home"> 
+          <LogoWidget />
+        </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#features">Games</Nav.Link>
@@ -16,6 +18,7 @@ const MyNav = () => {
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button className="ml-xxl-2" variant="outline-info">Search</Button>
         </Form>
+        <CartWidget />
       </Container>
   </Navbar>
   );
