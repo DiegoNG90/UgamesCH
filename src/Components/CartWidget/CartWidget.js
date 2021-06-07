@@ -1,7 +1,8 @@
 import React from 'react';
 
-export default function CartWidget() {
+export default function CartWidget({items}) {
+
     return (
-        <i class="fas fa-shopping-cart" style={{ color: "white", fontSize: "1.3rem"}}></i>
+        <i className="fas fa-shopping-cart" style={{ color: "white", fontSize: "1.3rem"}}>{' '+ items.length}</i>
     )
 }
