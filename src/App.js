@@ -1,5 +1,5 @@
 import './App.css';
-import MyNav from './Components/Navbar';
+import Navbar from './Components/Navbar';
 import ItemListContainer from './Components/ItemListContainer'
 import ItemCount from './Components/ItemCount'
 import {useState} from 'react';
@@ -13,9 +13,9 @@ function App() {
 }
   return (
     <>
-      < MyNav items={items}/>
+      < Navbar items={items}/>
         < ItemListContainer greeting="Welcome to UGAMES 🚀" description="2021 Ultimate Gamming Platform"/>
-        <Container fluid className="d-flex ">
+        <Container fluid className="d-flex">
           < ItemCount
            addItem={addItem}
            name="Laptop"

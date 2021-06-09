@@ -2,7 +2,7 @@ import { Navbar, Container, Nav, Form, FormControl, Button } from "react-bootstr
 import CartWidget from '../CartWidget';
 import LogoWidget from '../LogoWidget';
 
-const MyNav = ({items}) => {
+const Navbar = ({items}) => {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
