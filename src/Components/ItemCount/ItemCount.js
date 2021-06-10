@@ -1,76 +1,37 @@
-import React, {useState} from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import {Form, Card, Button} from "react-bootstrap";
-import styled from 'styled-components';
-import shortId from "short-id";
+import {Form, Button} from "react-bootstrap";
 
-const ProductCardBody = styled(Card.Body)`
-    flex: 1 1 auto;
-    padding: 1rem 0rem 1rem 1rem;
-`
-const ItemCount = ({addItem, name, description, stock}) => {
-  const [quantity, setQuantity] = useState(0);
-
+const ItemCount = ({quantity, stock, setQuantity}) => {
   const increment = () => {
-    return (quantity < stock) && setQuantity(quantity + 1)
-  }
+    return quantity < stock && setQuantity(quantity + 1);
+  };
   const decrement = () => {
-    return quantity > 0 && setQuantity(quantity - 1)
-  } 
-  const handleAddItem = (e) => {
-      e.preventDefault();
-      const id = shortId.generate();
-      const numberOfItems = Number(e.target.elements[1].value);
-      const itemName = e.target.children[0].children[1].children[0].innerText;
-      
-      const item = {id, numberOfItems,itemName}
-      addItem(item)
-        
-  }
+    return quantity > 0 && setQuantity(quantity - 1);
+  };
+
   return (
-    <Form onSubmit={handleAddItem}>
-      <Card style={{ width: "18rem"}}>
-        <Card.Img variant="top" src="holder.js/100px180" />
-        <ProductCardBody>
-          <Card.Title>{name}</Card.Title>
-          <Card.Text>
-            {description}
-            
-          </Card.Text>
-          <Card.Text>
-          Stock: {stock}
-          </Card.Text>
-          
-            <Form.Group className="d-flex justify-content-end">
-                <Button 
-                  variant="dark"
-                  onClick={() => increment()}
-                >
-                    +
-                </Button>
-                <Form.Control type="text" disabled style={{width: "3em", textAlign: "end"}} value={quantity}/>
-                <Button
-                 variant="dark"
-                 onClick={() => decrement()}
-                >
-                    -
-                </Button> 
-            </Form.Group>
-            <Form.Group className="d-flex justify-content-end">
-                <Button type="submit" variant="success" size="lg">Add to cart</Button>
-            </Form.Group>
-          
-        </ProductCardBody>
-      </Card>
-    </Form>  
+    <Form.Group className="d-flex justify-content-end">
+      <Button variant="dark" onClick={() => increment()}>
+        +
+      </Button>
+      <Form.Control
+        type="text"
+        disabled
+        style={{ width: "3em", textAlign: "end" }}
+        value={quantity}
+      />
+      <Button variant="dark" onClick={() => decrement()}>
+        -
+      </Button>
+    </Form.Group>
   );
-}
+};
 
 ItemCount.propTypes = {
+  quantity: PropTypes.number,
   stock: PropTypes.number,
-  name: PropTypes.string,
-  description: PropTypes.string,
-  addItem: PropTypes.func,
+  setQuantity: PropTypes.func.isRequired,
 };
 
 export default ItemCount;
