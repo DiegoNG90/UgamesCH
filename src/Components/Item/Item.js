@@ -17,8 +17,9 @@ const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => 
     e.preventDefault();
     const numberOfItems = Number(e.target.elements[1].value);
     const itemName = title;
+    const finalPrice = numberOfItems*price;
 
-    const item = { id, numberOfItems, itemName };
+    const item = { id, numberOfItems, itemName, price, finalPrice };
     addItem(item);
   };
   return (
@@ -49,8 +50,11 @@ const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => 
 };
 
 Item.propTypes = {
+  price: PropTypes.number,
   stock: PropTypes.number,
-  name: PropTypes.string,
+  id: PropTypes.string,
+  pictureURL: PropTypes.string,
+  title: PropTypes.string,
   description: PropTypes.string,
   addItem: PropTypes.func.isRequired,
 };
