@@ -1,28 +1,29 @@
 import React, {useState} from "react";
-import {Form, Card, Button } from "react-bootstrap";
+import {Form, Card, Button} from "react-bootstrap";
 import styled from 'styled-components';
+import shortId from "short-id";
 
 const ProductCardBody = styled(Card.Body)`
     flex: 1 1 auto;
     padding: 1rem 0rem 1rem 1rem;
 `
-export default function ItemCount({addItem, name, description}) {
+export default function ItemCount({addItem, name, description, stock}) {
   const [quantity, setQuantity] = useState(0);
   const increment = () => {
-    setQuantity(quantity + 1)
+    return (quantity < stock) && setQuantity(quantity + 1)
   }
   const decrement = () => {
-    setQuantity(quantity - 1)
+    return quantity > 0 && setQuantity(quantity - 1)
   } 
   const handleAddItem = (e) => {
       e.preventDefault();
-      const numberOfItems = e.target.elements[1].value
+      const id = shortId.generate();
+      const numberOfItems = Number(e.target.elements[1].value);
       const itemName = e.target.children[0].children[1].children[0].innerText;
-      const item = {
-          numberOfItems,
-          itemName
-      }
-      addItem(item) 
+      
+      const item = {id, numberOfItems,itemName}
+      addItem(item)
+        
   }
   return (
     <Form onSubmit={handleAddItem}>
@@ -32,6 +33,10 @@ export default function ItemCount({addItem, name, description}) {
           <Card.Title>{name}</Card.Title>
           <Card.Text>
             {description}
+            
+          </Card.Text>
+          <Card.Text>
+          Stock: {stock}
           </Card.Text>
           
             <Form.Group className="d-flex justify-content-end">
@@ -41,7 +46,7 @@ export default function ItemCount({addItem, name, description}) {
                 >
                     +
                 </Button>
-                <Form.Control type="text" disabled style={{width: "2.5em", textAlign: "end"}} value={quantity}/>
+                <Form.Control type="text" disabled style={{width: "3em", textAlign: "end"}} value={quantity}/>
                 <Button
                  variant="dark"
                  onClick={() => decrement()}
