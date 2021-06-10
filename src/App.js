@@ -1,5 +1,5 @@
 import './App.css';
-import Navbar from './Components/Navbar';
+import Navbar from './Components/Navbar/Navbar';
 import ItemListContainer from './Components/ItemListContainer'
 import ItemCount from './Components/ItemCount'
 import {useState} from 'react';

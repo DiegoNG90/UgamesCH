@@ -1,14 +1,15 @@
-import { Navbar, Container, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { Container, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar as NavBootstrap } from 'react-bootstrap';
 import CartWidget from '../CartWidget';
 import LogoWidget from '../LogoWidget';
 
 const Navbar = ({items}) => {
   return (
-    <Navbar bg="dark" variant="dark">
+    <NavBootstrap bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home"> 
+        <NavBootstrap.Brand href="#home"> 
           <LogoWidget />
-        </Navbar.Brand>
+        </NavBootstrap.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#features">Games</Nav.Link>
@@ -22,8 +23,8 @@ const Navbar = ({items}) => {
         <CartWidget items={items} />
 
       </Container>
-  </Navbar>
+  </NavBootstrap>
   );
 };
 
-export default MyNav;
+export default Navbar;
