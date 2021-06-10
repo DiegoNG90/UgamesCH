@@ -43,6 +43,7 @@ const ItemListContainer= ({ greeting, description, addItem }) => {
 ItemListContainer.propTypes = {
   greeting: PropTypes.string,
   description: PropTypes.string,
+  addItem: PropTypes.func,
 };
 
 export default ItemListContainer;

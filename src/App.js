@@ -13,8 +13,6 @@ function App() {
     <>
       < Navbar items={items}/>
         < ItemListContainer greeting="Welcome to UGAMES 🚀" description="2021 Ultimate Gamming Platform" addItem={addItem}/> 
-          
-   
     </>
   );
 }

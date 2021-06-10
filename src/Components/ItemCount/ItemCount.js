@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import PropTypes from "prop-types";
 import {Form, Card, Button} from "react-bootstrap";
 import styled from 'styled-components';
 import shortId from "short-id";
@@ -7,8 +8,9 @@ const ProductCardBody = styled(Card.Body)`
     flex: 1 1 auto;
     padding: 1rem 0rem 1rem 1rem;
 `
-export default function ItemCount({addItem, name, description, stock}) {
+const ItemCount = ({addItem, name, description, stock}) => {
   const [quantity, setQuantity] = useState(0);
+
   const increment = () => {
     return (quantity < stock) && setQuantity(quantity + 1)
   }
@@ -63,3 +65,12 @@ export default function ItemCount({addItem, name, description, stock}) {
     </Form>  
   );
 }
+
+ItemCount.propTypes = {
+  stock: PropTypes.number,
+  name: PropTypes.string,
+  description: PropTypes.string,
+  addItem: PropTypes.func,
+};
+
+export default ItemCount;
