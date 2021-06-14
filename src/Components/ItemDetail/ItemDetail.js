@@ -1,6 +1,6 @@
 import React from "react";
 import {Modal, Badge, Container, Col, Row, Image} from 'react-bootstrap';
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 const ItemDetail = ({handleCloseDetailModal,showItemDetailModal, product}) => {
   console.log(product)
@@ -34,5 +34,11 @@ const ItemDetail = ({handleCloseDetailModal,showItemDetailModal, product}) => {
       </Modal>
   );
 }
+
+ItemDetail.propTypes = {
+    handleCloseDetailModal: PropTypes.func.isRequired,
+    showItemDetailModal: PropTypes.func.isRequired,
+    product: PropTypes.object,
+};
 
 export default ItemDetail;

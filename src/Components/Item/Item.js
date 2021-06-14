@@ -85,4 +85,16 @@ Item.propTypes = {
   addItem: PropTypes.func.isRequired,
 };
 
+Item.propTypes = {
+  addItem: PropTypes.func.isRequired,
+  handleCloseDetailModal: PropTypes.func.isRequired,
+  showItemDetailModal: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  pictureURL: PropTypes.string,
+  descripton:  PropTypes.string,
+  stock: PropTypes.number,
+  id: PropTypes.number,
+  price: PropTypes.number,
+};
+
 export default Item;

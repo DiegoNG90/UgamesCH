@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import PropTypes from 'react':
+
 import ItemDetail from '../ItemDetail'
 
 const ItemDetailContainer = ({addItem, handleCloseDetailModal,showItemDetailModal, title, id, stock, price, pictureURL, description}) => {
@@ -32,5 +34,17 @@ const ItemDetailContainer = ({addItem, handleCloseDetailModal,showItemDetailModa
         </>
     )
 }
+
+ItemDetailContainer.propTypes = {
+    addItem: PropTypes.func.isRequired,
+    handleCloseDetailModal: PropTypes.func.isRequired,
+    showItemDetailModal: PropTypes.func.isRequired,
+    title: PropTypes.string,
+    pictureURL: PropTypes.string,
+    descripton:  PropTypes.string,
+    stock: PropTypes.number,
+    id: PropTypes.number,
+    price: PropTypes.number,
+};
 
 export default ItemDetailContainer;
