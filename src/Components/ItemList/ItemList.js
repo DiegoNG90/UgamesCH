@@ -8,17 +8,17 @@ const ItemList = ({addItem, products}) => {
     return (
       <>
         {
-            products.map(product => {
+            products.map( ({title, id, stock, price, pictureURL, description}) => {
                 return (
-                    <Col>
+                    <Col key={id}>
                         <Item
                             addItem={addItem}
-                            title={product.title}
-                            id={product.id}
-                            stock={product.stock}
-                            price={product.price}
-                            pictureURL={product.pictureURL}
-                            description={products.description}
+                            title={title}
+                            id={id}
+                            stock={stock}
+                            price={price}
+                            pictureURL={pictureURL}
+                            description={description}
                         />
                     </Col>
                 )
