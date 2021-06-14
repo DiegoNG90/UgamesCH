@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Form, Card, Button } from "react-bootstrap";
-import ItemCount from "../ItemCount";
 import styled from "styled-components";
+
+import ItemDetailContainer from '../ItemDetailContainer';
+import ItemCount from "../ItemCount";
 
 //Style component
 const ProductCardBody = styled(Card.Body)`
@@ -12,6 +14,11 @@ const ProductCardBody = styled(Card.Body)`
 
 const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => {
   const [quantity, setQuantity] = useState(0);
+  const [showItemDetailModal, setShowItemDetailModal] = useState(false);
+
+  const handleCloseDetailModal = () => {
+    setShowItemDetailModal(false);
+  }
 
   const handleAddItem = (e) => {
     e.preventDefault();
@@ -39,12 +46,31 @@ const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => 
           setQuantity={setQuantity}
         />
 
-        <Form.Group className="d-flex justify-content-end">
+        <Form.Group className="d-flex justify-content-between p-2">
           <Button type="submit" variant="success" size="lg">
             Add to cart
           </Button>
+          {/* Acá va a ir ItemDetail MODAL que sería ItemDetailContainer */}
+          <Button 
+            type="button" 
+            variant="primary" 
+            size="medium"
+            onClick={() => setShowItemDetailModal(true)}
+          >
+            View details
+          </Button>
         </Form.Group>
       </Form>
+      <ItemDetailContainer 
+        handleCloseDetailModal={handleCloseDetailModal} 
+        showItemDetailModal={showItemDetailModal}
+        title={title}
+        stock={stock} 
+        id={id} 
+        price={price} 
+        pictureURL={pictureURL} 
+        description={description}
+      />
     </Card>
   );
 };
