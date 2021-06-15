@@ -11,7 +11,8 @@ const center = {
 
 const ItemListContainer= ({ greeting, description, addItem }) => {
   const [products, setProducts] = useState([]);
-
+  console.log("Product ID desde ItemListContainer", typeof shortId.generate());
+  
   //Fake product list and fake promiss (to imitate Api timeout response).
   useEffect(() => {
     const productList = [

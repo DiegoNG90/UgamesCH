@@ -42,8 +42,8 @@ ItemDetailContainer.propTypes = {
     title: PropTypes.string,
     pictureURL: PropTypes.string,
     descripton:  PropTypes.string,
+    id: PropTypes.string,
     stock: PropTypes.number,
-    id: PropTypes.number,
     price: PropTypes.number,
 };
 
