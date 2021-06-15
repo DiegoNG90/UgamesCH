@@ -1,6 +1,8 @@
 import { Container, Nav, Form, FormControl, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { Navbar as NavBootstrap } from 'react-bootstrap';
+import {NavLink} from 'react-router-dom';
+
 import CartWidget from '../CartWidget';
 import LogoWidget from '../LogoWidget';
 
@@ -8,13 +10,13 @@ const Navbar = ({items}) => {
   return (
     <NavBootstrap bg="dark" variant="dark">
       <Container>
-        <NavBootstrap.Brand href="#home"> 
+        <NavLink activeClassName="selected" to={'/'}> 
           <LogoWidget />
-        </NavBootstrap.Brand>
+        </NavLink>
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Games</Nav.Link>
-          <Nav.Link href="#pricing">Contact</Nav.Link>
+          <NavLink activeClassName="selected" to={'/'}>Home </NavLink>
+          <NavLink activeClassName="selected" to={'/games/1'}>Games </NavLink>
+          <NavLink activeClassName="selected" to={'/contact'}>Contact</NavLink>
         </Nav>
         <Form className="d-flex justify-content-between">
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
