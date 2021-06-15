@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import ItemDetailContainer from '../ItemDetailContainer';
 import ItemCount from "../ItemCount";
+import ZeroQuantitySelected from '../ZeroQuantitySelected';
 
 //Style component
 const ProductCardBody = styled(Card.Body)`
@@ -15,6 +16,7 @@ const ProductCardBody = styled(Card.Body)`
 const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => {
   const [quantity, setQuantity] = useState(0);
   const [showItemDetailModal, setShowItemDetailModal] = useState(false);
+
 
   const handleCloseDetailModal = () => {
     setShowItemDetailModal(false);
@@ -27,7 +29,9 @@ const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => 
     const finalPrice = numberOfItems*price;
 
     const item = { id, numberOfItems, itemName, price, finalPrice };
-    addItem(item);
+    if (item.numberOfItems > 0){
+      addItem(item);
+    }
   };
   return (
     <Card style={{ width: "18rem" }}>
@@ -47,20 +51,26 @@ const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => 
         />
 
         <Form.Group className="d-flex justify-content-between p-2">
-          <Button type="submit" variant="success" size="lg">
+          {/* Aca vendria ZeroQuantitySelected y el conditional del button */}
+          {quantity > 0?
+           <Button type="submit" variant="success" size="lg">
             Add to cart
-          </Button>
-          {/* Acá va a ir ItemDetail MODAL que sería ItemDetailContainer */}
+            </Button> 
+            :
+            <ZeroQuantitySelected />
+          }
+
           <Button 
             type="button" 
             variant="primary" 
             size="medium"
             onClick={() => setShowItemDetailModal(true)}
-          >
+            >
             View details
           </Button>
         </Form.Group>
       </Form>
+      {/* Acá va a ir ItemDetail MODAL que sería ItemDetailContainer */}
       <ItemDetailContainer 
         handleCloseDetailModal={handleCloseDetailModal} 
         showItemDetailModal={showItemDetailModal}
@@ -83,18 +93,6 @@ Item.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   addItem: PropTypes.func.isRequired,
-};
-
-Item.propTypes = {
-  addItem: PropTypes.func.isRequired,
-  handleCloseDetailModal: PropTypes.func.isRequired,
-  showItemDetailModal: PropTypes.func.isRequired,
-  title: PropTypes.string,
-  pictureURL: PropTypes.string,
-  descripton:  PropTypes.string,
-  stock: PropTypes.number,
-  id: PropTypes.number,
-  price: PropTypes.number,
 };
 
 export default Item;
