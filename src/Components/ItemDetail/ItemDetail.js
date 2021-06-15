@@ -1,9 +1,13 @@
 import React from "react";
-import {Modal, Badge, Container, Col, Row, Image} from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
 import PropTypes from "prop-types";
+import {Modal, Badge, Container, Col, Row, Image} from 'react-bootstrap';
 
 const ItemDetail = ({handleCloseDetailModal,showItemDetailModal, product}) => {
-  console.log(product)
+//const { id } = useParams();
+
+// console.log("Este es el ID desde el componente ItemDetal:", id) // Devuelve undefined
+
   return (
       <Modal
         size="lg"
@@ -12,7 +16,7 @@ const ItemDetail = ({handleCloseDetailModal,showItemDetailModal, product}) => {
         aria-labelledby="example-modal-sizes-title-lg"
       >
         <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg"> {product.title + ' '}
+          <Modal.Title id="example-modal-sizes-title-lg"> {product.title  + ' '} {/* {id} devuelve undefined*/}
             <Badge variant="light" style={{background:"green"}}> New </Badge> 
           </Modal.Title>
         </Modal.Header>
