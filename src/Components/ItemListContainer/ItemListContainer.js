@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import { Container, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 import ItemList from "../ItemList";
-import shortId from "short-id";
+// import shortId from "short-id";
 // import styled from 'styled-componets'
 
 const center = {
@@ -11,14 +11,14 @@ const center = {
 
 const ItemListContainer= ({ greeting, description, addItem }) => {
   const [products, setProducts] = useState([]);
-  console.log("Product ID desde ItemListContainer", typeof shortId.generate());
+  // console.log("Product ID desde ItemListContainer", typeof shortId.generate());
   
   //Fake product list and fake promiss (to imitate Api timeout response).
   useEffect(() => {
     const productList = [
         {
             title: "Laptop", 
-            id: shortId.generate(), 
+            id: 1, 
             price: 150000, 
             stock: 20,
             description: "Awesome Laptop for programming",
@@ -26,7 +26,7 @@ const ItemListContainer= ({ greeting, description, addItem }) => {
         },
         {
             title: "Monitor LG 27", 
-            id: shortId.generate(), 
+            id: 2, 
             price: 45490, 
             stock: 10,
             description: "Full color screen with 4K HD graphics",
@@ -34,7 +34,7 @@ const ItemListContainer= ({ greeting, description, addItem }) => {
         },
         {
             title: "Gamming chair", 
-            id: shortId.generate(), 
+            id: 3, 
             price: 62150, 
             stock: 15,
             description: "Most confortable chair for gamming and/or programming",

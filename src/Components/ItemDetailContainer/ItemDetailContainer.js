@@ -27,8 +27,6 @@ const ItemDetailContainer = ({addItem, handleCloseDetailModal,showItemDetailModa
     return (
         <>
             <ItemDetail 
-              handleCloseDetailModal={handleCloseDetailModal} 
-              showItemDetailModal={showItemDetailModal}
               product={product}
             />
         </>
@@ -36,9 +34,6 @@ const ItemDetailContainer = ({addItem, handleCloseDetailModal,showItemDetailModa
 }
 
 ItemDetailContainer.propTypes = {
-    addItem: PropTypes.func,
-    handleCloseDetailModal: PropTypes.func,
-    showItemDetailModal: PropTypes.func,
     title: PropTypes.string,
     pictureURL: PropTypes.string,
     descripton:  PropTypes.string,

@@ -1,26 +1,20 @@
 import React from "react";
 import { useParams } from 'react-router-dom';
 import PropTypes from "prop-types";
-import {Modal, Badge, Container, Col, Row, Image} from 'react-bootstrap';
+import {Badge, Container, Col, Row, Image} from 'react-bootstrap';
 
-const ItemDetail = ({handleCloseDetailModal,showItemDetailModal, product}) => {
-//const { id } = useParams();
-
+const ItemDetail = ({product}) => {
+const { id } = useParams();
+console.log("Product desde ItemDetail", product)
 // console.log("Este es el ID desde el componente ItemDetal:", id) // Devuelve undefined
 
   return (
-      <Modal
-        size="lg"
-        show={showItemDetailModal}
-        onHide={handleCloseDetailModal}
-        aria-labelledby="example-modal-sizes-title-lg"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg"> {product.title  + ' '} {/* {id} devuelve undefined*/}
-            <Badge variant="light" style={{background:"green"}}> New </Badge> 
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      <Container fluid>
+        <Row>
+          <Col>
+            <h1 id="example-modal-sizes-title-lg"> {product.title + {id} + ' '} {/* {id} devuelve undefined*/}
+              <Badge variant="light" style={{background:"green"}}> New </Badge> 
+            </h1>
             <Container>
                 <Row>
                     <Col sm={6} className="d-flex justify-content-center">
@@ -34,14 +28,14 @@ const ItemDetail = ({handleCloseDetailModal,showItemDetailModal, product}) => {
                     </Col>
                 </Row>
             </Container>   
-        </Modal.Body>
-      </Modal>
+          </Col>
+        </Row>     
+      </Container>
+
   );
 }
 
 ItemDetail.propTypes = {
-    handleCloseDetailModal: PropTypes.func.isRequired,
-    showItemDetailModal: PropTypes.func.isRequired,
     product: PropTypes.object,
 };
 
