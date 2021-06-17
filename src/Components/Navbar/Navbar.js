@@ -14,9 +14,9 @@ const Navbar = ({items}) => {
           <LogoWidget />
         </NavLink>
         <Nav className="mr-auto">
-          <NavLink activeClassName="selected" to={'/'}>Home </NavLink>
-          <NavLink activeClassName="selected" to={'/games/1'}>Games </NavLink>
-          <NavLink activeClassName="selected" to={'/contact'}>Contact</NavLink>
+          <NavLink activeClassName="selected" className="pr-2" to={'/'}>Home </NavLink>
+          <NavLink activeClassName="selected" className="pr-2" to={'/games/1'}>Games </NavLink>
+          <NavLink activeClassName="selected" className="pr-2" to={'/contact'}>Contact</NavLink>
         </Nav>
         <Form className="d-flex justify-content-between">
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
