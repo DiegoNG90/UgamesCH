@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Form, Card, Button } from "react-bootstrap";
 import styled from "styled-components";
+import {Link} from 'react-router-dom';
 
-import ItemDetailContainer from '../ItemDetailContainer';
 import ItemCount from "../ItemCount";
 import ZeroQuantitySelected from '../ZeroQuantitySelected';
 
@@ -15,12 +15,6 @@ const ProductCardBody = styled(Card.Body)`
 
 const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => {
   const [quantity, setQuantity] = useState(0);
-  const [showItemDetailModal, setShowItemDetailModal] = useState(false);
-
-
-  const handleCloseDetailModal = () => {
-    setShowItemDetailModal(false);
-  }
 
   const handleAddItem = (e) => {
     e.preventDefault();
@@ -35,7 +29,9 @@ const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => 
   };
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={pictureURL} />
+      <Link to={`/item/${id}`}>
+        <Card.Img variant="top" src={pictureURL} />
+      </Link>
       <ProductCardBody>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{description}</Card.Text>
@@ -51,7 +47,6 @@ const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => 
         />
 
         <Form.Group className="d-flex justify-content-between p-2">
-          {/* Aca vendria ZeroQuantitySelected y el conditional del button */}
           {quantity > 0?
            <Button type="submit" variant="success" size="lg">
             Add to cart
@@ -59,28 +54,9 @@ const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => 
             :
             <ZeroQuantitySelected />
           }
-
-          <Button 
-            type="button" 
-            variant="primary" 
-            size="medium"
-            onClick={() => setShowItemDetailModal(true)}
-            >
-            View details
-          </Button>
         </Form.Group>
       </Form>
-      {/* Acá va a ir ItemDetail MODAL que sería ItemDetailContainer */}
-      <ItemDetailContainer 
-        handleCloseDetailModal={handleCloseDetailModal} 
-        showItemDetailModal={showItemDetailModal}
-        title={title}
-        stock={stock} 
-        id={id} 
-        price={price} 
-        pictureURL={pictureURL} 
-        description={description}
-      />
+
     </Card>
   );
 };
