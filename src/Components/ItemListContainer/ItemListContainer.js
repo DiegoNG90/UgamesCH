@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { Container, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 import ItemList from "../ItemList";
+import {useParams} from 'react-router-dom';
 // import shortId from "short-id";
 // import styled from 'styled-componets'
 
@@ -11,15 +12,17 @@ const center = {
 
 const ItemListContainer= ({ greeting, description, addItem }) => {
   const [products, setProducts] = useState([]);
-  // console.log("Product ID desde ItemListContainer", typeof shortId.generate());
+  const [filteredProduct, setFilteredProduct] = useState([]);
+  const {category} = useParams()
   
   //Fake product list and fake promiss (to imitate Api timeout response).
   useEffect(() => {
     const productList = [
         {
-            title: "Laptop", 
+            title: "Dell Inspiron 15", 
             id: 1, 
             price: 150000, 
+            idCategory: "laptop",
             stock: 20,
             description: "Awesome Laptop for programming",
             pictureURL: "https://images.unsplash.com/photo-1547731030-cd126f44e9c5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
@@ -27,7 +30,8 @@ const ItemListContainer= ({ greeting, description, addItem }) => {
         {
             title: "Monitor LG 27", 
             id: 2, 
-            price: 45490, 
+            price: 45490,
+            idCategory: "monitor", 
             stock: 10,
             description: "Full color screen with 4K HD graphics",
             pictureURL: "https://images.unsplash.com/photo-1586952518485-11b180e92764?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=522&q=80"
@@ -35,26 +39,37 @@ const ItemListContainer= ({ greeting, description, addItem }) => {
         {
             title: "Gamming chair", 
             id: 3, 
-            price: 62150, 
+            price: 62150,
+            idCategory: "chair",
             stock: 15,
             description: "Most confortable chair for gamming and/or programming",
             pictureURL: "https://thermaltake.azureedge.net/pub/media/catalog/product/cache/e4fc6e308b66431a310dcd4dc0838059/x/f/xfittwb_01.jpg"
         } 
       ];
+
+      
+      
     const fakeRequest = new Promise((resolve, reject) => {
         setTimeout(() => {
-        resolve(productList)
+          if(category) {
+            const productCategory = productList.filter(item => item.idCategory == category);
+            const [filteredCategory] = productCategory;
+            resolve([filteredCategory])
+          }else{
+            resolve(productList)
+
+          }
         }, 2000)
     });
     fakeRequest.then((result)=> {
-        setProducts(result)
+      category === "" ? setProducts(result): setFilteredProduct(result);
     }, (error) => {
         throw new Error("Ha habido un error")
     }
     ).catch((error) =>{
         console.log(error.message)
     });
-  }, [] )
+  }, [category] )
 
   return (
     <>
@@ -64,7 +79,7 @@ const ItemListContainer= ({ greeting, description, addItem }) => {
           <p style={center}>{description}</p>
         </Row>
         <Row>
-          <ItemList addItem={addItem} products={products}/>
+          <ItemList addItem={addItem} products={products} filteredProduct={filteredProduct}/>
         </Row>
       </Container>
     </>
