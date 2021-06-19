@@ -36,7 +36,16 @@ const ItemDetailContainer = () => {
                 stock: 15,
                 description: "Most confortable chair for gamming and/or programming",
                 pictureURL: "https://thermaltake.azureedge.net/pub/media/catalog/product/cache/e4fc6e308b66431a310dcd4dc0838059/x/f/xfittwb_01.jpg"
-            } 
+            },
+            {
+            title: "Acer Nitro", 
+            id: 4, 
+            price: 125000, 
+            idCategory: "laptop",
+            stock: 20,
+            description: "Awesome Laptop for programming",
+            pictureURL: "https://images-na.ssl-images-amazon.com/images/I/61Yw8bER51L._AC_SY355_.jpg"
+            }
           ];
 
         const productId = productList.filter(item => item.id == id);
