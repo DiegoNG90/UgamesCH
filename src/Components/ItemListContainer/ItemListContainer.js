@@ -8,7 +8,18 @@ import {useParams} from 'react-router-dom';
 
 const center = {
   textAlign: "center",
-};
+}
+
+const shadowH1 = {
+    width: "fit-content",
+    borderBottom: "1px solid black",
+    borderLeft: "1px solid black",
+    paddingBottom: "0.8rem",
+    paddingLeft: "1rem",
+    margin: "2rem",
+    "boxShadow": "-0.7rem 0.7rem 0.3rem grey",
+}
+
 
 const ItemListContainer= ({ greeting, description, addItem }) => {
   const [products, setProducts] = useState([]);
@@ -81,8 +92,8 @@ const ItemListContainer= ({ greeting, description, addItem }) => {
   return (
     <>
       <Container justify="center">
-        <Row>
-          <h1 style={center}>{greeting}</h1>
+        <Row className="d-flex justify-content-center">
+          <h1 style={shadowH1}>{greeting}</h1>
           <p style={center}>{description}</p>
         </Row>
         <Row>
