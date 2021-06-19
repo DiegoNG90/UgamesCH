@@ -64,7 +64,7 @@ const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => 
 Item.propTypes = {
   price: PropTypes.number,
   stock: PropTypes.number,
-  id: PropTypes.string,
+  id: PropTypes.number,
   pictureURL: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
