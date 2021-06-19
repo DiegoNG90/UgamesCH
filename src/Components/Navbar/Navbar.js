@@ -15,8 +15,8 @@ const Navbar = ({items}) => {
         </NavLink>
         <Nav className="mr-auto">
           <NavLink activeClassName="selected" style={{marginRight: "2em", textDecoration:"none"}} to={'/'}>Home </NavLink>
-          <NavLink activeClassName="selected" style={{marginRight: "2em", textDecoration:"none"}} to={'/games/1'}>Games </NavLink>
-          <NavLink activeClassName="selected" style={{marginRight: "2em", textDecoration:"none"}} to={'/contact'}>Contact</NavLink>
+          <NavLink activeClassName="selected" style={{marginRight: "2em", textDecoration:"none"}} to={'category/laptop'}>Laptops </NavLink>
+          {/* <NavLink activeClassName="selected" style={{marginRight: "2em", textDecoration:"none"}} to={'#'}>Contact (WIP)</NavLink> */}
         </Nav>
         <Form className="d-flex justify-content-between">
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
