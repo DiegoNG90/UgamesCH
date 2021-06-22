@@ -4,7 +4,7 @@ import { Popover,Button, OverlayTrigger } from 'react-bootstrap';
 const popover = (
     <Popover id="popover-basic">
       <Popover.Content>
-        You got <strong>0</strong> quantity selected. Please select at least 1 product to Add to Cart.
+        You got <strong>0</strong> quantity selected. Click this button again to close this message and please select at least 1 product to Add to Cart.
       </Popover.Content>
     </Popover>
   );
