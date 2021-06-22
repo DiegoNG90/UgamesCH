@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Form, Card, Button } from "react-bootstrap";
 import styled from "styled-components";
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 
 import ItemCount from "../ItemCount";
 import ZeroQuantitySelected from '../ZeroQuantitySelected';
@@ -15,6 +15,7 @@ const ProductCardBody = styled(Card.Body)`
 
 const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => {
   const [quantity, setQuantity] = useState(0);
+  const [selectedProducts, setSelectedProducts] = useState(0); 
 
   const handleAddItem = (e) => {
     e.preventDefault();
@@ -25,6 +26,7 @@ const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => 
     const item = { id, numberOfItems, itemName, price, finalPrice };
     if (item.numberOfItems > 0){
       addItem(item);
+      setSelectedProducts(quantity);
     }
   };
   return (
@@ -47,14 +49,22 @@ const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => 
         />
 
         <Form.Group className="d-flex justify-content-between p-2">
-          {quantity > 0?
+          
+        </Form.Group>
+          {selectedProducts > 0  ?
+            <NavLink activeClassName="selected" style={{textDecoration:"none"}} to={'/cart'}> 
+              <Button type="button" variant="primary" size="lg">
+              Terminar Compra
+              </Button>
+            </NavLink>
+            :
+            quantity > 0?
            <Button type="submit" variant="success" size="lg">
-            Add to cart
+            Add {quantity} to cart
             </Button> 
             :
             <ZeroQuantitySelected />
           }
-        </Form.Group>
       </Form>
 
     </Card>
