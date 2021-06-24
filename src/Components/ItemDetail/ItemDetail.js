@@ -1,9 +1,30 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
-import {Badge, Container, Col, Row, Image} from 'react-bootstrap';
+import {Badge, Container, Col, Row, Image, Button, Form} from 'react-bootstrap';
+import {NavLink} from 'react-router-dom';
+
+import ItemCount from '../ItemCount';
+import ZeroQuantitySelected from '../ZeroQuantitySelected'
 
 const ItemDetail = ({product}) => {
-  // console.log("Product desde ItemDetail", product.length)
+  const [quantity, setQuantity] = useState (0);
+  const [selectedProducts, setSelectedProducts] = useState(0); 
+  const [shop, setShop] = useState(null);
+
+  const handleAddItem = (e) => {
+    e.preventDefault();
+    const numberOfItems = Number(e.target.elements[1].value);
+    const itemName = product.title;
+    const price = product.price;
+    const finalPrice = product.numberOfItems*price;
+    const productID = product.id;
+
+    const item = { productID, itemName, numberOfItems, price, finalPrice };
+    if (item.numberOfItems > 0){
+      setSelectedProducts(quantity);
+      setShop(item);
+    }
+  };
 
   return (
       <Container fluid>
@@ -21,8 +42,31 @@ const ItemDetail = ({product}) => {
                         <p><strong> {product.description} </strong></p>
                         <p>Price: ${product.price}</p>
                         <p>Stock: {product.stock} units</p>
-                        <p></p>
+
+                        <Form onSubmit={handleAddItem}>
+                        <ItemCount 
+                          quantity={quantity}
+                          stock={product.stock}
+                          setQuantity={setQuantity}
+                        />
+                        {selectedProducts > 0  ?
+                          <NavLink activeClassName="selected" style={{textDecoration:"none"}} to={'/cart'}> 
+                            <Button type="button" variant="primary" size="lg">
+                            Finish shop
+                            </Button>
+                          </NavLink>
+                          :
+                          quantity > 0?
+                        <Button type="submit" variant="success" size="lg">
+                          Add {quantity} to cart
+                          </Button> 
+                          :
+                          <ZeroQuantitySelected />
+                        }
+                        </Form>
                     </Col>
+                    
+                    
                 </Row>
             </Container>   
           </Col>

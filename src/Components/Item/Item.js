@@ -54,7 +54,7 @@ const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => 
           {selectedProducts > 0  ?
             <NavLink activeClassName="selected" style={{textDecoration:"none"}} to={'/cart'}> 
               <Button type="button" variant="primary" size="lg">
-              Terminar Compra
+              Finish shop
               </Button>
             </NavLink>
             :

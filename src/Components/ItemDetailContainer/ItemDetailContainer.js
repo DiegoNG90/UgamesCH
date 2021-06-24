@@ -5,7 +5,6 @@ import ItemDetail from '../ItemDetail';
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState({});
-    console.log("State PRODUCT desde ItemDetailContainer", product);
     const {id} = useParams();
 
     useEffect(() => {
@@ -50,8 +49,7 @@ const ItemDetailContainer = () => {
 
         const productId = productList.filter(item => item.id == id);
         const [filteredProduct] = productId; 
-        // console.log("ProductID desde ItemDetailContainer",productId)
-        // console.log("El id de item/1 es", id) // 1
+
 
         const fakeRequest = new Promise((resolve, reject) => {
             setTimeout(() => {
