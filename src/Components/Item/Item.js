@@ -13,9 +13,9 @@ const ProductCardBody = styled(Card.Body)`
   padding: 1rem 0rem 1rem 1rem;
 `;
 
-const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => {
+const Item = ({ title, stock, id, price, pictureURL, description }) => {
   const [quantity, setQuantity] = useState(0);
-  const [selectedProducts, setSelectedProducts] = useState(0); 
+  const [selectedProducts, setSelectedProducts] = useState(0);
 
   const handleAddItem = (e) => {
     e.preventDefault();
@@ -25,7 +25,6 @@ const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => 
 
     const item = { id, numberOfItems, itemName, price, finalPrice };
     if (item.numberOfItems > 0){
-      addItem(item);
       setSelectedProducts(quantity);
     }
   };
@@ -49,10 +48,10 @@ const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => 
         />
 
         <Form.Group className="d-flex justify-content-between p-2">
-          
+
         </Form.Group>
           {selectedProducts > 0  ?
-            <NavLink activeClassName="selected" style={{textDecoration:"none"}} to={'/cart'}> 
+            <NavLink activeClassName="selected" style={{textDecoration:"none"}} to={'/cart'}>
               <Button type="button" variant="primary" size="lg">
               Finish shop
               </Button>
@@ -61,7 +60,7 @@ const Item = ({ addItem, title, stock, id, price, pictureURL, description }) => 
             quantity > 0?
            <Button type="submit" variant="success" size="lg">
             Add {quantity} to cart
-            </Button> 
+            </Button>
             :
             <ZeroQuantitySelected />
           }
@@ -78,7 +77,6 @@ Item.propTypes = {
   pictureURL: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
-  addItem: PropTypes.func.isRequired,
 };
 
 export default Item;

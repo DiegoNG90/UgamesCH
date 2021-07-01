@@ -1,15 +1,19 @@
-import React, {useState} from "react";
+import React, { useState, useContext } from 'react';
 import PropTypes from "prop-types";
 import {Badge, Container, Col, Row, Image, Button, Form} from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
 
 import ItemCount from '../ItemCount';
 import ZeroQuantitySelected from '../ZeroQuantitySelected'
+import CartContext from '../../context/CartContext';
 
 const ItemDetail = ({product}) => {
   const [quantity, setQuantity] = useState (0);
-  const [selectedProducts, setSelectedProducts] = useState(0); 
+  const [selectedProducts, setSelectedProducts] = useState(0);
+  //Ésto guardará el item. Es probable que se use con context en el futuro.
   const [shop, setShop] = useState(null);
+  //Intento de usar useContext, pero no sé como meter shop(state del item) en el context de cartContext(array) para que sea el cache del CacheProvider.
+  const cartContext = useContext(CartContext); //?????
 
   const handleAddItem = (e) => {
     e.preventDefault();
@@ -31,7 +35,7 @@ const ItemDetail = ({product}) => {
         <Row>
           <Col>
             <h1 id="example-modal-sizes-title-lg"> {product.title + ' '}
-              <Badge variant="light" style={{background:"green"}}> New </Badge> 
+              <Badge variant="light" style={{background:"green"}}> New </Badge>
             </h1>
             <Container>
                 <Row>
@@ -44,13 +48,13 @@ const ItemDetail = ({product}) => {
                         <p>Stock: {product.stock} units</p>
 
                         <Form onSubmit={handleAddItem}>
-                        <ItemCount 
+                        <ItemCount
                           quantity={quantity}
                           stock={product.stock}
                           setQuantity={setQuantity}
                         />
                         {selectedProducts > 0  ?
-                          <NavLink activeClassName="selected" style={{textDecoration:"none"}} to={'/cart'}> 
+                          <NavLink activeClassName="selected" style={{textDecoration:"none"}} to={'/cart'}>
                             <Button type="button" variant="primary" size="lg">
                             Finish shop
                             </Button>
@@ -59,18 +63,18 @@ const ItemDetail = ({product}) => {
                           quantity > 0?
                         <Button type="submit" variant="success" size="lg">
                           Add {quantity} to cart
-                          </Button> 
+                          </Button>
                           :
                           <ZeroQuantitySelected />
                         }
                         </Form>
                     </Col>
-                    
-                    
+
+
                 </Row>
-            </Container>   
+            </Container>
           </Col>
-        </Row>     
+        </Row>
       </Container>
   );
 }
