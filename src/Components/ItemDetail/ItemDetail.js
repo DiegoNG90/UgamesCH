@@ -11,9 +11,9 @@ const ItemDetail = ({product}) => {
   const [quantity, setQuantity] = useState (0);
   const [selectedProducts, setSelectedProducts] = useState(0);
   //Ésto guardará el item. Es probable que se use con context en el futuro.
-  const [shop, setShop] = useState(null);
+  // const [shop, setShop] = useState(null);
   //Intento de usar useContext, pero no sé como meter shop(state del item) en el context de cartContext(array) para que sea el cache del CacheProvider.
-  const cartContext = useContext(CartContext); //?????
+  const {addToCache} = useContext(CartContext); //?????
 
   const handleAddItem = (e) => {
     e.preventDefault();
@@ -26,8 +26,10 @@ const ItemDetail = ({product}) => {
     const item = { productID, itemName, numberOfItems, price, finalPrice };
     if (item.numberOfItems > 0){
       setSelectedProducts(quantity);
-      setShop(item);
+      // setShop(item);
+      addToCache(item)
     }
+
   };
 
   return (
