@@ -6,11 +6,11 @@ import {NavLink} from 'react-router-dom';
 import CartWidget from '../CartWidget';
 import LogoWidget from '../LogoWidget';
 
-const Navbar = ({items}) => {
+const Navbar = () => {
   return (
     <NavBootstrap bg="dark" variant="dark">
       <Container>
-        <NavLink activeClassName="selected" to={'/'}> 
+        <NavLink activeClassName="selected" to={'/'}>
           <LogoWidget />
         </NavLink>
         <Nav className="mr-auto">
@@ -22,7 +22,7 @@ const Navbar = ({items}) => {
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button className="ml-xxl-2" variant="outline-info">Search</Button>
         </Form>
-        <CartWidget items={items} />
+        <CartWidget/>
       </Container>
   </NavBootstrap>
   );
