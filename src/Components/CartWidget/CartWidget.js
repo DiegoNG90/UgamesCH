@@ -1,18 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import PropTypes from "prop-types";
+import CartContext from '../../context/CartContext';
 
 const CartWidget = () => {
     const [quantity, setQuantity] = useState(0);
+    const { cacheSize } = useContext(CartContext);
 
-    // useEffect(() => {
-    //     if(items.length>0){
-    //         let counter = 0;
-    //         items.forEach((item) => counter += item.numberOfItems)
-    //         setQuantity(counter)
-    //     }
-    // }, [items])
     return (
-        <i className="fas fa-shopping-cart" style={{ color: "white", fontSize: "1.3rem"}}>{' '+ quantity}</i> //items.length
+        <i className="fas fa-shopping-cart" style={{ color: "white", fontSize: "1.3rem"}}>{' '+ cacheSize}</i>
     )
 }
 
