@@ -22,16 +22,26 @@ export default function CacheProvider({ defaultValue = [], children }) {
     setCache([...cache, obj]);
     console.log('Elemento agregado!');
   }
-  function deleteFromCache(obj){
+  function deleteOneItemFromCache(obj){
     if(isInCache(obj)){
         const removedItemList = cache.filter((item) => item.id !== obj.id);
         setCache(removedItemList)
     }
     return;
   }
+  function clearAllItemsFromCache(){
+    setCache([]);
+  }
   return (
     <CartContext.Provider
-      value={{ cache, addToCache, isInCache, deleteFromCache, cacheSize: cache.length }}
+      value={{
+        cache,
+        addToCache,
+        isInCache,
+        deleteOneItemFromCache,
+        clearAllItemsFromCache,
+        cacheSize: cache.length,
+      }}
     >
       {children}
     </CartContext.Provider>

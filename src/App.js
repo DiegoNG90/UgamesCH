@@ -11,7 +11,6 @@ function App() {
     <>
     <BrowserRouter>
       <CacheProvider >
-      {/* <CacheProvider > */}
         <Navbar />
         <Switch>
           <Route exact path="/">
