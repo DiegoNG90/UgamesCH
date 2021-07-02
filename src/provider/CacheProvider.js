@@ -5,11 +5,13 @@ export default function CacheProvider({ defaultValue = [], children }) {
   const [cache, setCache] = useState(defaultValue);
 
   function getFromCache(id) {
-    return cache.find((item) => item.id === id);
+
+    const itemEnCache = cache.find((item) => item.productID === id);
+    return itemEnCache;
   }
 
-  function isInCache({ id }) {
-    return id === undefined ? undefined : getFromCache(id) !== undefined;
+  function isInCache( obj ) {
+    return obj.productID === undefined ? undefined : getFromCache(obj.productID) !== undefined;
   }
 
   function addToCache(obj) {
