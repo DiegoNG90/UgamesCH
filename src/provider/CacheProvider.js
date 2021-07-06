@@ -24,9 +24,10 @@ export default function CacheProvider({ defaultValue = [], children }) {
   }
   function deleteOneItemFromCache(obj){
     if(isInCache(obj)){
-        const removedItemList = cache.filter((item) => item.id !== obj.id);
+        const removedItemList = cache.filter(item => item.productID !== obj.productID);
         setCache(removedItemList)
     }
+    console.log("No intersection")
     return;
   }
   function clearAllItemsFromCache(){
