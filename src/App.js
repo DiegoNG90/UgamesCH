@@ -4,7 +4,8 @@ import {BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
 import ItemListContainer from './Components/ItemListContainer'
 import ItemDetailContainer from './Components/ItemDetailContainer';
-import CacheProvider from './provider/CacheProvider'
+import CacheProvider from './provider/CacheProvider';
+import Cart from './Components/Cart';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
             <ItemDetailContainer />
           </Route>
           <Route exact path="/cart">
-            <h1> Este es el cart </h1>
+            <Cart />
           </Route>
         </Switch>
       </CacheProvider>
