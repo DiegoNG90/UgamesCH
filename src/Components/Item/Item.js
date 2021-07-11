@@ -69,7 +69,7 @@ const Item = ({ title, stock, id, price, pictureURL, description }) => {
               size="lg"
               onClick={() => addToCache(shopItem)}
             >
-              Finish shop
+              Confirm
             </Button>
           </NavLink>
         ) : quantity > 0 ? (
