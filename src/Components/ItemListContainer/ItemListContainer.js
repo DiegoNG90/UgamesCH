@@ -3,8 +3,9 @@ import { Container, Row } from "react-bootstrap";
 import PropTypes from "prop-types";
 import ItemList from "../ItemList";
 import {useParams} from 'react-router-dom';
-// import shortId from "short-id";
-// import styled from 'styled-componets'
+import { getFirestore } from '../../dbConector';
+
+import Loader from '../Loader';
 
 const center = {
   textAlign: "center",
@@ -24,82 +25,64 @@ const shadowH1 = {
 const ItemListContainer= ({ greeting, description }) => {
   const [products, setProducts] = useState([]);
   const [filteredProduct, setFilteredProduct] = useState([]);
-  const {category} = useParams()
+  const [loading, setLoading] = useState(true);
+  const {category} = useParams();
 
-  //Fake product list and fake promiss (to imitate Api timeout response).
   useEffect(() => {
-    const productList = [
-        {
-            title: "Dell Inspiron 15",
-            id: 1,
-            price: 150000,
-            idCategory: "laptop",
-            stock: 20,
-            description: "Awesome Laptop for programming",
-            pictureURL: "https://images.unsplash.com/photo-1547731030-cd126f44e9c5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-        },
-        {
-            title: "Monitor LG 27",
-            id: 2,
-            price: 45490,
-            idCategory: "monitor",
-            stock: 10,
-            description: "Full color screen with 4K HD graphics",
-            pictureURL: "https://images.unsplash.com/photo-1586952518485-11b180e92764?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=522&q=80"
-        },
-        {
-            title: "Gamming chair",
-            id: 3,
-            price: 62150,
-            idCategory: "chair",
-            stock: 15,
-            description: "Most confortable chair for gamming and/or programming",
-            pictureURL: "https://thermaltake.azureedge.net/pub/media/catalog/product/cache/e4fc6e308b66431a310dcd4dc0838059/x/f/xfittwb_01.jpg"
-        },
-        {
-          title: "Acer Nitro",
-          id: 4,
-          price: 125000,
-          idCategory: "laptop",
-          stock: 20,
-          description: "Awesome Laptop for programming",
-          pictureURL: "https://images-na.ssl-images-amazon.com/images/I/61Yw8bER51L._AC_SY355_.jpg"
-        }
-      ];
-
-
-
-    const fakeRequest = new Promise((resolve, reject) => {
-        setTimeout(() => {
-          if(category) {
-            const productCategory = productList.filter(item => item.idCategory == category);
-            resolve(productCategory);
-          }else{
-            resolve(productList);
+    setLoading(true);
+    const db = getFirestore();
+    const itemCollection = db.collection('items');
+    
+    if(!category){
+      itemCollection
+        .get()
+        .then((querySnapshot) => {
+          if (querySnapshot.size === 0) {
+            console.log('No results!');
           }
-        }, 2000)
-    });
-    fakeRequest.then((result)=> {
-      category === "" ? setProducts(result): setFilteredProduct(result);
-    }, (error) => {
-        throw new Error("Ha habido un error")
+          setProducts(querySnapshot.docs.map((doc) => doc.data()));
+        })
+        .catch((error) => {
+          console.error('Error searching items', error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }else{
+      const itemCollectionByCategory = itemCollection.where('idCategory', '==', category)
+      itemCollectionByCategory
+        .get()
+        .then((querySnapshot) => {
+          if (querySnapshot.size === 0) {
+            console.log('No results!');
+          }
+          setProducts(querySnapshot.docs.map((doc) => doc.data()));
+        })
+        .catch((error) => {
+          console.error('Error searching items', error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
-    ).catch((error) =>{
-        console.log(error.message)
-    });
-  }, [category] )
+  }, [category]);
 
   return (
     <>
-      <Container justify="center">
-        <Row className="d-flex justify-content-center">
-          <h1 style={shadowH1}>{greeting}</h1>
-          <p style={center}>{description}</p>
-        </Row>
-        <Row>
-          <ItemList products={products} filteredProduct={filteredProduct}/>
-        </Row>
-      </Container>
+      {
+        loading ?
+        <Loader />
+        :
+        <Container justify="center">
+          <Row className="d-flex justify-content-center">
+            <h1 style={shadowH1}>{greeting}</h1>
+            <p style={center}>{description}</p>
+          </Row>
+          <Row>
+            <ItemList products={products} filteredProduct={filteredProduct}/>
+          </Row>
+        </Container>
+      }
     </>
   );
 }
