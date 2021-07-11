@@ -25,7 +25,9 @@ export default function CacheProvider({ defaultValue = [], children }) {
   function deleteOneItemFromCache(obj){
     if(isInCache(obj)){
         const removedItemList = cache.filter(item => item.productID !== obj.productID);
-        setCache(removedItemList)
+        setCache(removedItemList);
+        console.log("Item deleted: Cache updated")
+        return;
     }
     console.log("No intersection")
     return;
