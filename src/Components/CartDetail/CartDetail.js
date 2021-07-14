@@ -1,6 +1,8 @@
-import { Table, Container } from 'react-bootstrap';
+import { Table, Container, Button } from 'react-bootstrap';
+import './style.css'
 import React, { useContext, useState } from 'react';
 import CartContext from '../../context/CartContext';
+import { NavLink } from 'react-router-dom';
 
 const customStyles = {
     grid: {
@@ -92,6 +94,17 @@ const CartDetail = () => {
             })}
           </tbody>
         </Table>
+        <NavLink
+          activeClassName="selected"
+          to={'/checkout'}
+          style={{ marginRight: '2em', textDecoration: 'none' }}
+        >
+          <div className="d-flex justify-content-center">
+            <Button variant="dark" className="buttonHover" size="lg">
+              Checkout 🛒
+            </Button>
+          </div>
+        </NavLink>
       </Container>
     );
 }

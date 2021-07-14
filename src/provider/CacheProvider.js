@@ -4,8 +4,17 @@ import CartContext from '../context/CartContext';
 export default function CacheProvider({ defaultValue = [], children }) {
   const [cache, setCache] = useState(defaultValue);
 
-  function getFromCache(id) {
+  function getFinalPrice(){
+    if(cache.length === 0){
+      console.log("Can't return final value of empty cache array")
+      return;
+    }
+    let counter = 0;
+    cache.forEach(item => counter += item.finalPrice);
+    return counter;
+  }
 
+  function getFromCache(id) {
     const itemEnCache = cache.find((item) => item.productID === id);
     return itemEnCache;
   }
@@ -17,7 +26,7 @@ export default function CacheProvider({ defaultValue = [], children }) {
   function addToCache(obj) {
     if (isInCache(obj)) {
       console.log('Element already in cache store.');
-      return;
+      return "0";
     }
     setCache([...cache, obj]);
     console.log('Elemento agregado!');
@@ -43,6 +52,7 @@ export default function CacheProvider({ defaultValue = [], children }) {
         isInCache,
         deleteOneItemFromCache,
         clearAllItemsFromCache,
+        getFinalPrice,
         cacheSize: cache.length,
       }}
     >

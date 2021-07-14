@@ -1,7 +1,7 @@
 import { Container, Nav, Form, FormControl, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { Navbar as NavBootstrap } from 'react-bootstrap';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import CartWidget from '../CartWidget';
 import LogoWidget from '../LogoWidget';
