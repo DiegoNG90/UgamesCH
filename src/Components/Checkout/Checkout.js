@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Container, Form, Button, Row, Col, Card, Modal } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { getFirestore } from '../../dbConector';
 import * as firebase from 'firebase';
 import CartContext from '../../context/CartContext';
@@ -11,12 +11,16 @@ import Loader from '../Loader';
 const Checkout = () => {
   //Context
   const { cache, getFinalPrice } = useContext(CartContext);
+  console.log('Cache is', cache);
+  //State
   const [ checkoutModal, setCheckoutModal ] = useState(false);
   const [orderId, setOrderId] = useState(null)
-  console.log('Cache is', cache);
+  // useHistory
+  const history = useHistory()
 
   const handleCloseCheckoutModal = () => {
     setCheckoutModal(false);
+    history.push('/')
   }
 
   const handleSubmit = (e) => {
