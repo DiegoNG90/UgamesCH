@@ -7,6 +7,7 @@ import ItemDetailContainer from './Components/ItemDetailContainer';
 import CacheProvider from './provider/CacheProvider';
 import Cart from './Components/Cart';
 import Checkout from './Components/Checkout'
+import Footer from './Components/Footer'
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           </Switch>
         </CacheProvider>
       </BrowserRouter>
+      <Footer />
     </>
   );
 }

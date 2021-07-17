@@ -35,7 +35,7 @@ const Item = ({ title, stock, id, price, pictureURL, description }) => {
       }
     };
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '18rem', height: '100%' }}>
       <Link to={`/item/${id}`}>
         <Card.Img variant="top" src={pictureURL} />
       </Link>

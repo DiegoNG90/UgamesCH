@@ -10,11 +10,11 @@ const popover = (
   );
 
 const ZeroQuantitySelected = () => {
-    return (  
+    return (
       <OverlayTrigger trigger="click" placement="right" overlay={popover}>
           <Button variant="danger">Add Items (0)</Button>
       </OverlayTrigger>
     );
 }
- 
+
 export default ZeroQuantitySelected;
