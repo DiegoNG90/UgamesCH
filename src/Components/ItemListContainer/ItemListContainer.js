@@ -32,7 +32,6 @@ const ItemListContainer= ({ greeting, description }) => {
     setLoading(true);
     const db = getFirestore();
     const itemCollection = db.collection('items');
-    
     if(!category){
       itemCollection
         .get()
@@ -69,20 +68,23 @@ const ItemListContainer= ({ greeting, description }) => {
 
   return (
     <>
-      {
-        loading ?
-        <Loader />
-        :
+      {loading ? (
+        <Loader item="Products" text="are being loading"/>
+      ) : (
         <Container justify="center">
           <Row className="d-flex justify-content-center">
             <h1 style={shadowH1}>{greeting}</h1>
             <p style={center}>{description}</p>
           </Row>
           <Row>
-            <ItemList products={products} filteredProduct={filteredProduct}/>
+            <ItemList
+              products={products}
+              filteredProduct={filteredProduct}
+              setFilteredProduct={setFilteredProduct}
+            />
           </Row>
         </Container>
-      }
+      )}
     </>
   );
 }

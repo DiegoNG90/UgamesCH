@@ -40,7 +40,7 @@ const ItemDetailContainer = () => {
     return (
         <>
         {loading ?
-            <Loader />
+            <Loader item="Products" text="are being loading!"/>
         :
             <ItemDetail
             product={product}
