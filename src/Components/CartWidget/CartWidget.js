@@ -1,5 +1,4 @@
 import React, {useState, useContext, useEffect} from 'react';
-import PropTypes from "prop-types";
 import CartContext from '../../context/CartContext';
 import { NavLink } from 'react-router-dom';
 
@@ -8,11 +7,10 @@ const CartWidget = () => {
     const [quantity, setQuantity] = useState(cacheSize);
 
     useEffect(() => {
-      let counter = 0;
-      const realQuantity = cache.map(item => {
-        counter += item.numberOfItems;
-      })
-      setQuantity(counter);
+      const realQuantity = cache.reduce((total, item) => {
+        return total + item.numberOfItems
+      }, 0)
+      setQuantity(realQuantity);
 
     }, [cache])
 
@@ -34,9 +32,5 @@ const CartWidget = () => {
       </>
     );
 }
-
-CartWidget.propTypes = {
-    items: PropTypes.array
-};
 
 export default CartWidget;
