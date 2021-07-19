@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import CartContext from '../context/CartContext';
+import PropTypes from 'prop-types';
 
-export default function CacheProvider({ defaultValue = [], children }) {
+const CacheProvider = ({ defaultValue = [], children }) => {
   const [cache, setCache] = useState(defaultValue);
 
   function getFinalPrice(){
@@ -61,3 +62,14 @@ export default function CacheProvider({ defaultValue = [], children }) {
   );
 }
 
+
+
+CacheProvider.propTypes = {
+  defaultValue: PropTypes.array,
+  children: PropTypes.PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.elementType,
+  ]),
+};
+
+export default CacheProvider;
