@@ -19,7 +19,7 @@ function App() {
             <Route exact path="/">
               <ItemListContainer
                 greeting="WELCOME TO UGAMES 🚀"
-                description="2021 Ultimate Gamming Platform"
+                description="2021 Ultimate Gamming and Coding Platform"
               />
             </Route>
             <Route exact path="/category/:category">
