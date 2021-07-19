@@ -63,6 +63,8 @@ const ItemList = ({ products, filteredProduct, setFilteredProduct }) => {
 
 ItemList.propTypes = {
    products: PropTypes.array,
+   filteredProduct: PropTypes.array,
+   setFilteredProduct: PropTypes.func,
 };
 
 export default ItemList;

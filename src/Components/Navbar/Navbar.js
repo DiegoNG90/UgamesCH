@@ -1,5 +1,4 @@
 import { Container, Nav, Form, FormControl, Button } from "react-bootstrap";
-import PropTypes from "prop-types";
 import { Navbar as NavBootstrap } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
@@ -26,10 +25,6 @@ const Navbar = () => {
       </Container>
   </NavBootstrap>
   );
-};
-
-Navbar.propTypes = {
-  items: PropTypes.array,
 };
 
 export default Navbar;
