@@ -5,14 +5,13 @@ import { NavLink } from 'react-router-dom';
 import './style.css'
 
 const Cart = () => {
-  const { cache, cacheSize } = useContext(CartContext);
-
+  const { cacheSize } = useContext(CartContext);
 
   return (
     <div className="cart">
       <h1 className="text-center"> Cart</h1>
 
-      {cache.length > 0 ? (
+      {cacheSize > 0 ? (
         <CartDetail />
       ) : (
         <>
