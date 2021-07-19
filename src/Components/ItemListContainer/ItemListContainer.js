@@ -69,7 +69,7 @@ const ItemListContainer= ({ greeting, description }) => {
   return (
     <>
       {loading ? (
-        <Loader item="Products" text="are being loading"/>
+        <Loader item="Products" text="are loading"/>
       ) : (
         <Container justify="center">
           <Row className="d-flex justify-content-center">
