@@ -10,9 +10,10 @@ const CacheProvider = ({ defaultValue = [], children }) => {
       console.log("Can't return final value of empty cache array")
       return;
     }
-    let counter = 0;
-    cache.forEach(item => counter += item.finalPrice);
-    return counter;
+    const finalPrice = cache.reduce((total, item) => {
+      return total + item.finalPrice
+    },0)
+    return finalPrice;
   }
 
   function getFromCache(id) {
