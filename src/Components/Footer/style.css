@@ -2,10 +2,19 @@
     margin-top: 1rem;
     background-color: #212529;
     height: 100%;
-    padding-bottom: 1rem;
+    padding-top: 1rem;
 }
 .footer-paragraph{
-    color: white;
+    color: #68ad05;
     font-size: 3em;
     text-align: center;
+}
+.color{
+    color: white;
+}
+.columna {
+    height: 100px;
+}
+.fila{
+    width: 100%;
 }
