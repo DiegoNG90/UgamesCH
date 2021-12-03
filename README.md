@@ -1,5 +1,5 @@
 # ESPAÑOL
-# Ugames gamming eccomerce
+# Ugames gamming eccomerce - https://ugames-react.netlify.app/
 
 Éste proyecto trata de un eccomerce orientado a gamming y productos tecnológicos.
 Se decidió escribir el código entero en inglés.
@@ -36,7 +36,7 @@ A medida que crece la app, el uso -y abuso?- del useState hook se vuelve evident
 EDIT: Finalmente, se terminó implementando useContext para ganar facilidad, estructura y organización en el manejo del state global del carrito .
 
 # ENGLISH
-# Ugames gamming eccomerce
+# Ugames gamming eccomerce - https://ugames-react.netlify.app/
 
 This project is an eccomerce orientated to gamming and tech products.
 All code is written in english.
